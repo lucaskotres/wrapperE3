@@ -11,7 +11,7 @@ import datetime
 app = Flask(__name__)
 api = Api(app)
 
-class E3Tag(Resource):
+class e3webapi(Resource):
 
 
     def get(self,pathname):
@@ -40,12 +40,12 @@ class E3Tag(Resource):
             e3 = e3comm()
 
             temp = e3.sendValue(e3path=pathname,Value=data.get("value"),Timestamp=timestamp,Quality=data.get("quality"))
-            return pathname+' write!'
+            return pathname+' updated!'
         else:
             return 'No json received!',400
 
 
-api.add_resource(E3Tag, '/<string:pathname>')
+api.add_resource(e3webapi, '/<string:pathname>')
 
 if __name__ == '__main__':
 
